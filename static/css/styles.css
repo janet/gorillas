@@ -1,0 +1,39 @@
+.mypage-header {
+	margin: 0;
+	background-color: black;
+	color: white;
+}
+
+.nav-tab-item {
+	color: white;
+	cursor: pointer;
+}
+
+.header-contents {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: large;
+}
+
+.flash-messages {
+	border-radius: 0;
+}
+
+.nav>li>a:hover {
+	background-color: #7E8AA2;
+    color: white;
+}
+.nav-tabs>li>a:hover {
+	border-color: #7E8AA2;
+}
+
+#logo {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: block;
+  width: 199px;
+  height: 81px;
+  background: url(/images/logo.png) no-repeat;
+}
+
