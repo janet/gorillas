@@ -1,0 +1,20 @@
+{
+	"class_instance": [
+		{
+			"class_schedule_id": 1,
+			"date": "05/02/2016"
+		},
+		{
+			"class_schedule_id": 2,
+			"date": "05/04/2016"
+		},
+		{
+			"class_schedule_id": 3,
+			"date": "05/07/2016"
+		},
+		{
+			"class_schedule_id": 1,
+			"date": "05/09/2016"
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+	"program": [
+		{
+			"name": "Chimp",
+			"order": 1
+		},
+		{
+			"name": "Primate",
+			"order": 2
+		},
+		{
+			"name": "Gorilla",
+			"order": 3
+		},
+		{
+			"name": "Submission Samurai",
+			"order": 4
+		}
+	]
+}

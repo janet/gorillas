@@ -1,0 +1,24 @@
+{
+	"rank_type": [
+		{
+			"name": "White",
+			"abbr": "W",
+			"order": 1
+		},
+		{
+			"name": "Grey-White",
+			"abbr": "G-W",
+			"order": 2
+		},
+		{
+			"name": "Grey",
+			"abbr": "G",
+			"order": 3
+		},
+		{
+			"name": "Grey-Black",
+			"abbr": "G-B",
+			"order": 4
+		}
+	]
+}

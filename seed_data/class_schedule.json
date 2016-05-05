@@ -1,0 +1,19 @@
+{
+	"class_schedule": [
+		{
+			"name": "Youth Jiu Jitsu",
+			"day_of_week": "Monday",
+			"time": "17:00"
+		},
+		{
+			"name": "Youth Jiu Jitsu",
+			"day_of_week": "Wednesday",
+			"time": "17:00"
+		},
+		{
+			"name": "Youth Jiu Jitsu",
+			"day_of_week": "Saturday",
+			"time": "10:00"
+		}
+	]
+}

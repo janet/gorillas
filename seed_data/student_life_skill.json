@@ -1,0 +1,12 @@
+{
+	"student_life_skill": [
+		{
+			"student_id": 1,
+			"life_skill_instance_id": 1
+		},
+		{
+			"student_id": 2,
+			"life_skill_instance_id": 1
+		}
+	]
+}

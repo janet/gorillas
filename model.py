@@ -15,7 +15,7 @@ class Student(db.Model):
     name_first = db.Column(db.String(64), nullable=True)
     name_last = db.Column(db.String(64), nullable=True)
     rank_stripes = db.Column(db.Integer, nullable=True)
-    rank_id = db.Column(db.Integer, db.ForeignKey('rank.id'), nullable=True)
+    rank_type_id = db.Column(db.Integer, db.ForeignKey('rank_type.id'), nullable=True)
     program_id = db.Column(db.Integer, db.ForeignKey('program.id'), nullable=True)
 
     # define a relationship to Rank
@@ -102,28 +102,28 @@ class ClassScheduleCoach(db.Model):
         """Provide helpful representation when printed."""
         return "<ClassScheduleCoach id={} class_schedule_id={} coach_id={}>" % (self.id, self.class_schedule_id, self.coach_id)
 
-class StudentVisit(db.Model):
+class StudentClassInstance(db.Model):
     """tbd"""
 
-    __tablename__ = "student_visit"
+    __tablename__ = "student_class_instance"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
     class_instance_id = db.Column(db.Integer, db.ForeignKey('class_instance.id'), nullable=False)
-    attendance_id = db.Column(db.Integer, db.ForeignKey('attendance.id'), nullable=False)
+    attendance_id = db.Column(db.Integer, db.ForeignKey('attendance_type.id'), nullable=False)
     notes = db.Column(db.String(500), nullable=True)
 
     # define a relationship to Student
     student = db.relationship("Student",
-                           backref=db.backref("student_visits", order_by=id))
+                           backref=db.backref("student_class_instance", order_by=id))
 
     # define a relationship to ClassInstance
     class_instance = db.relationship("ClassInstance",
-                           backref=db.backref("student_visits", order_by=id))
+                           backref=db.backref("student_class_instance", order_by=id))
 
     # define a relationship to AttendanceType
     attendance = db.relationship("AttendanceType",
-                           backref=db.backref("student_visits", order_by=id))
+                           backref=db.backref("student_class_instance", order_by=id))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -142,10 +142,10 @@ class AttendanceType(db.Model):
         """Provide helpful representation when printed."""
         return "<AttendanceType id={} name={}>" % (self.id, self.name)
 
-class Enrollment(db.Model):
+class StudentClassSchedule(db.Model):
     """tbd"""
 
-    __tablename__ = "enrollment"
+    __tablename__ = "student_class_schedule"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'), nullable=False)
@@ -153,11 +153,11 @@ class Enrollment(db.Model):
 
     # define a relationship to Student
     student = db.relationship("Student",
-                           backref=db.backref("enrollment", order_by=id))
+                           backref=db.backref("student_class_schedule", order_by=id))
 
     # define a relationship to Class Schedule
-    class_schedule = db.relationship("class_schedule",
-                           backref=db.backref("enrollment", order_by=id))
+    class_schedule = db.relationship("ClassSchedule",
+                           backref=db.backref("student_class_schedule", order_by=id))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
@@ -223,7 +223,7 @@ class LifeSkillInstance(db.Model):
     start_date = db.Column(db.DateTime, nullable=True)
 
     # define a relationship to LifeSKillMaster
-    life_skill_master = db.relationship("LifeSKillMaster",
+    life_skill_master = db.relationship("LifeSkillMaster",
                            backref=db.backref("life_skill_instance", order_by=id))
 
     def __repr__(self):

@@ -1,0 +1,32 @@
+{
+	"student": [
+		{
+			"name_first": "Paul",
+			"name_last": "McCartney",
+			"rank_stripes": 2,
+			"rank_type_id": 1,
+			"program_id": 1
+		},
+		{
+			"name_first": "Ringo",
+			"name_last": "Starr",
+			"rank_stripes": 0,
+			"rank_type_id": 1,
+			"program_id": 2
+		},
+		{
+			"name_first": "John",
+			"name_last": "Lenon",
+			"rank_stripes": 3,
+			"rank_type_id": 2,
+			"program_id": 3
+		},
+		{
+			"name_first": "George",
+			"name_last": "Harrison",
+			"rank_stripes": 4,
+			"rank_type_id": 3,
+			"program_id": 4
+		}
+	]
+}

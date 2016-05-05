@@ -1,0 +1,16 @@
+{
+	"class_schedule_coach": [
+		{
+			"class_schedule_id": 1,
+			"coach_id": 2
+		},
+		{
+			"class_schedule_id": 2,
+			"coach_id": 2
+		},
+		{
+			"class_schedule_id": 3,
+			"coach_id": 1
+		}
+	]
+}
