@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, time
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
@@ -17,17 +18,17 @@ class Student(db.Model):
     rank_stripes = db.Column(db.Integer, nullable=True)
     rank_type_id = db.Column(db.Integer, db.ForeignKey('rank_type.id'), nullable=True)
     program_id = db.Column(db.Integer, db.ForeignKey('program.id'), nullable=True)
-
+    rank = relationship('RankType', backref='students', order_by=id)
     # define a relationship to Rank
-    rank = db.relationship("RankType",
-                           backref=db.backref("students", order_by=id))
+    # rank = db.relationship("RankType",
+    #                        backref=db.backref("students", order_by=id))
     # define a relationship to Program
     program = db.relationship("Program",
                            backref=db.backref("students", order_by=id))
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<Student id={1} name={2}>".format(self.id, self.name_first + ' ' + name_last)
+        return "<Student id={0} name={1}>".format(self.id, self.name_first + ' ' + self.name_last)
 
 class Coach(db.Model):
     """Coach user created in gorillas app"""
@@ -64,7 +65,7 @@ class ClassInstance(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<ClassInstance id={} date={}>" % (self.id, self.date)
+        return "<ClassInstance id={} date={}>".format(self.id, self.date)
 
 class ClassSchedule(db.Model):
     """tbd"""
@@ -79,7 +80,7 @@ class ClassSchedule(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<ClassSchedule id={} day_of_week={} time={}>" % (self.id, self.day_of_week, self.time)
+        return "<ClassSchedule id={} day_of_week={} time={}>".format(self.id, self.day_of_week, self.time)
 
 class ClassScheduleCoach(db.Model):
     """tbd"""
@@ -100,7 +101,7 @@ class ClassScheduleCoach(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<ClassScheduleCoach id={} class_schedule_id={} coach_id={}>" % (self.id, self.class_schedule_id, self.coach_id)
+        return "<ClassScheduleCoach id={} class_schedule_id={} coach_id={}>".format(self.id, self.class_schedule_id, self.coach_id)
 
 class StudentClassInstance(db.Model):
     """tbd"""
@@ -127,7 +128,7 @@ class StudentClassInstance(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<StudentVisit id={} student_id = {} class_instance_id={} attendance_id={}>" % (self.id, self.student_id, self.class_instance_id, self.attendance_id)
+        return "<StudentVisit id={} student_id = {} class_instance_id={} attendance_id={}>".format(self.id, self.student_id, self.class_instance_id, self.attendance_id)
 
 class AttendanceType(db.Model):
     """tbd"""
@@ -140,7 +141,7 @@ class AttendanceType(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<AttendanceType id={} name={}>" % (self.id, self.name)
+        return "<AttendanceType id={} name={}>".format(self.id, self.name)
 
 class StudentClassSchedule(db.Model):
     """tbd"""
@@ -161,7 +162,7 @@ class StudentClassSchedule(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<AttendanceType id={} name={}>" % (self.id, self.name)
+        return "<AttendanceType id={} name={}>".format(self.id, self.name)
 
 class RankType(db.Model):
     """tbd"""
@@ -175,7 +176,7 @@ class RankType(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<RankType id={} name={}>" % (self.id, self.name)
+        return "<RankType id={} name={}>".format(self.id, self.name)
 
 class Program(db.Model):
     """tbd"""
@@ -188,7 +189,7 @@ class Program(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<Program id={} name={}>" % (self.id, self.name)
+        return "<Program id={} name={}>".format(self.id, self.name)
 
 class StudentLifeSkill(db.Model):
     """tbd"""
@@ -211,7 +212,7 @@ class StudentLifeSkill(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<StudentLifeSkill id={} student_id={} life_skill_instance_id={}>" % (self.id, self.student_id, self.life_skill_instance_id)
+        return "<StudentLifeSkill id={} student_id={} life_skill_instance_id={}>".format(self.id, self.student_id, self.life_skill_instance_id)
 
 class LifeSkillInstance(db.Model):
     """tbd"""
@@ -228,7 +229,7 @@ class LifeSkillInstance(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<LifeSkillInstance id={} life_skill_master_id={} start_date={}>" % (self.id, self.life_skill_master_id, self.start_date)
+        return "<LifeSkillInstance id={} life_skill_master_id={} start_date={}>".format(self.id, self.life_skill_master_id, self.start_date)
 
 class LifeSkillMaster(db.Model):
     """tbd"""
@@ -242,7 +243,7 @@ class LifeSkillMaster(db.Model):
 
     def __repr__(self):
         """Provide helpful representation when printed."""
-        return "<LifeSkillMaster id={} name={}>" % (self.id, self.name)
+        return "<LifeSkillMaster id={} name={}>".format(self.id, self.name)
 
 
 ##############################################################################
@@ -254,6 +255,7 @@ def connect_to_db(app):
     # Configure to use our SQLite database
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/gorillas'
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
     # app.config['SQLALCHEMY_RECORD_QUERIES'] = True
     db.app = app
     db.init_app(app)
