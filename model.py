@@ -252,7 +252,7 @@ class LifeSkillMaster(db.Model):
 def connect_to_db(app):
     """Connect the database to our Flask app."""
 
-    # Configure to use our SQLite database
+    # postgresql://username:password@localhost/mydatabase
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/gorillas'
     app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
